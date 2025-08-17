@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Key - Lunaris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glass-card">
+    <h2>🔐 Enter Your Key</h2>
+    <input id="keyInput" placeholder="Paste your key..." />
+    <button onclick="submitKey()">Submit</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://gsetwnpxrltfzuggurhl.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzZXR3bnB4cmx0Znp1Z2d1cmhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0NTcwMzMsImV4cCI6MjA3MTAzMzAzM30.X2VqgNoRhOEayw6d2thcxTGHo22aizZGlfOQ06gYipY";
+
+    async function submitKey() {
+      const key = document.getElementById("keyInput").value.trim();
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/keys?key=eq.${key}&used=eq.false`, {
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        }
+      });
+      const data = await res.json();
+
+      if (data.length > 0) {
+        await fetch(`${SUPABASE_URL}/rest/v1/keys?key=eq.${key}`, {
+          method: "PATCH",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ used: true })
+        });
+        localStorage.setItem("lunarisAccess", "granted");
+        window.location.href = "success.html";
+      } else {
+        document.getElementById("message").innerText = "❌ Invalid or already used key.";
+      }
+    }
+
+    if (!location.search.includes("auth=1")) {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
