@@ -2,156 +2,144 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lunaris Lite</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      background: linear-gradient(to right top, #0f0f0f, #1a1a1a);
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      padding: 40px 20px;
-      color: #ffffff;
-      backdrop-filter: blur(8px);
+      background: linear-gradient(to right, #0f0f0f, #111111);
+      color: white;
+      overflow-x: hidden;
     }
 
-    .glass-container {
+    .glass {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      max-width: 900px;
-      width: 100%;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 2rem;
+      margin: 2rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .title {
-      font-size: 2rem;
-      font-weight: 600;
-      background: linear-gradient(to right, #00bfff, #ffd700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+    .glass:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .status {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
 
     .status-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
+      background: red;
       border-radius: 50%;
-      background-color: red;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
-    .description {
+    .download-button {
+      background-color: #555;
+      color: #aaa;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 2rem;
       font-size: 1rem;
-      opacity: 0.8;
-      margin-bottom: 30px;
+      margin-top: 2rem;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
 
     .features, .dev-status {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 25px;
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
-    .feature-button {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 12px;
-      border-radius: 12px;
-      transition: background 0.3s ease;
-      cursor: default;
-    }
-
-    .feature-button:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .download-btn {
-      background: linear-gradient(to right, #00bfff, #ffd700);
-      color: black;
-      font-weight: bold;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      margin-top: 20px;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    .download-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      margin-top: 10px;
-    }
-
-    .dev-note {
+    .feature-box {
       background: rgba(255, 255, 255, 0.07);
-      border-left: 4px solid #00bfff;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 0.95rem;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
     }
   </style>
 </head>
 
 <body>
-  <div class="glass-container">
-    <div class="title">Lunaris Lite</div>
+  <div class="glass">
+    <h1>Lunaris Lite</h1>
     <div class="status">
       <div class="status-dot"></div>
-      <span>Lunaris is not out yet · Version: Android · Status: In Development</span>
+      <span>Lunaris is not out yet</span>
     </div>
+    <p>Version: Android (Beta Preview)</p>
 
     <div class="features">
-      <div class="section-title">Features</div>
-      <div class="feature-button">AutoOptimize</div>
-      <div class="feature-button">FPS Unlocker (Temporarily disabled)</div>
-      <div class="feature-button">Clean UI with blue/gold glass design</div>
-      <div class="feature-button">Safe flag modifications without root</div>
+      <h2>Features</h2>
+      <div class="feature-box">AutoOptimize System - Fully Implemented</div>
+      <div class="feature-box">FPS Unlocker - Temporarily patched (awaiting new bypass)</div>
+      <div class="feature-box">Developer Options Boost - Enabled</div>
+      <div class="feature-box">Cache Wipe on Launch - Working</div>
     </div>
 
     <div class="dev-status">
-      <div class="section-title">Development Notes</div>
-      <div class="dev-note">✅ AutoOptimize: Fully implemented and stable.</div>
-      <div class="dev-note">⚠️ FPS Unlocker: Roblox updates have prevented uncapping FPS on mobile without executor support. Workarounds are in progress but unstable.</div>
-      <div class="dev-note">🚧 Clean install + cache wipe: Functions normally, but must be tested on different device versions.</div>
-      <div class="dev-note">🧪 Theme & visual polish: New glass style is locked in and finalized. Minor accessibility options may be added.</div>
-      <div class="dev-note">📦 APK size: Currently optimized and under 8MB.</div>
+      <h2>Development Status</h2>
+      <div class="feature-box">✔ AutoOptimize has been successfully implemented and working across most Android devices</div>
+      <div class="feature-box">⚠ FPS Unlocker was patched due to internal Roblox updates making uncapping harder without root/executor</div>
+      <div class="feature-box">✔ Developer enhancements like GPU rendering and animation scale settings are built in and ready</div>
+      <div class="feature-box">✔ Cache is now wiped both pre-launch and post-close for performance stability</div>
+      <div class="feature-box">🔧 UI Improvements (Lunaris Glass UI) are finalized and will be maintained long-term</div>
     </div>
 
-    <a class="download-btn" href="https://link-hub.net/1267303/7NrDTrwjZiNJ" target="_blank">Download (Hosted)</a>
+    <button class="download-button" disabled>Download Coming Soon</button>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Lunaris Lite. All rights reserved.
   </div>
 </body>
 
