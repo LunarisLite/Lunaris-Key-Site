@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lunaris Lite</title>
   <style>
     :root {
@@ -20,13 +20,21 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
+      background: linear-gradient(270deg, #0a0a0a, #1a1a1a, #0a0a0a);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text);
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -35,18 +43,25 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .glass-panel {
       background: var(--glass-bg);
       border-radius: 20px;
       backdrop-filter: blur(20px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 20px;
       margin-bottom: 30px;
       width: 100%;
       max-width: 900px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-panel:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 25px rgba(79, 145, 255, 0.4);
     }
 
     .section-title {
@@ -70,12 +85,13 @@
       border: none;
       border-radius: 12px;
       text-decoration: none;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-top: 10px;
     }
 
     .download-btn:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 15px var(--accent-gold);
     }
 
     .features {
@@ -93,11 +109,12 @@
       font-size: 1rem;
       color: var(--accent-blue);
       cursor: default;
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
     .feature-btn:hover {
       transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .bugs-list p {
@@ -153,7 +170,7 @@
     </div>
   </div>
 
-  <!-- Single Stat Tile -->
+  <!-- Status Section -->
   <div class="glass-panel">
     <div class="section-title">📈 Status</div>
     <div class="features">
