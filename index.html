@@ -1,166 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunaris Lite</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
-      font-family: 'Outfit', sans-serif;
       box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
-      color: #fff;
-      overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
+      background: linear-gradient(to right top, #0f0f0f, #1a1a1a);
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 40px 20px;
+      color: #ffffff;
+      backdrop-filter: blur(8px);
     }
 
-    .animated-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0, 119, 255, 0.1) 20%, transparent 80%),
-                  radial-gradient(circle, rgba(255, 208, 0, 0.1) 20%, transparent 80%);
-      background-size: 40% 40%;
-      animation: moveBg 20s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes moveBg {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(-25%, -25%); }
-      100% { transform: translate(0, 0); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 30px;
-      border-radius: 20px;
+    .glass-container {
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      background: linear-gradient(to right, #00aaff, #ffd700);
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(to right, #00bfff, #ffd700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
     }
 
     .status {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 12px 0 24px;
-      font-size: 1rem;
-      color: #f55;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
-    .status .dot {
+    .status-dot {
       width: 10px;
       height: 10px;
-      background: red;
       border-radius: 50%;
-      box-shadow: 0 0 10px red;
+      background-color: red;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.5; }
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
-    .version {
-      font-size: 0.9rem;
-      color: #ccc;
+    .description {
+      font-size: 1rem;
+      opacity: 0.8;
       margin-bottom: 30px;
     }
 
-    .features {
+    .features, .dev-status {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 25px;
     }
 
-    .feature-card {
-      flex: 1 1 200px;
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.08);
+    .feature-button {
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      text-align: center;
-      transition: all 0.3s ease;
+      padding: 12px;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+      cursor: default;
     }
 
-    .feature-card:hover {
-      background: rgba(0, 119, 255, 0.2);
-      transform: translateY(-5px);
-      border-color: #0077ff;
+    .feature-button:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .download-btn {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 14px 26px;
-      background: linear-gradient(135deg, #0077ff, #ffd700);
-      color: #000;
+      background: linear-gradient(to right, #00bfff, #ffd700);
+      color: black;
       font-weight: bold;
-      border-radius: 14px;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-top: 20px;
+      display: inline-block;
       text-decoration: none;
-      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .download-btn:hover {
       transform: scale(1.05);
-      filter: brightness(1.1);
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: 50px;
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .dev-note {
+      background: rgba(255, 255, 255, 0.07);
+      border-left: 4px solid #00bfff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 0.95rem;
     }
   </style>
 </head>
+
 <body>
-
-  <div class="animated-bg"></div>
-
-  <div class="container">
-    <h1>Lunaris Lite</h1>
+  <div class="glass-container">
+    <div class="title">Lunaris Lite</div>
     <div class="status">
-      <div class="dot"></div>
-      <span>Lunaris is not out yet</span>
+      <div class="status-dot"></div>
+      <span>Lunaris is not out yet · Version: Android · Status: In Development</span>
     </div>
-    <div class="version">Android • Dev Build</div>
 
     <div class="features">
-      <div class="feature-card">AutoOptimize</div>
-      <div class="feature-card">Performance Tweaks</div>
-      <div class="feature-card">Developer Tools</div>
-      <div class="feature-card">Safe Updates</div>
+      <div class="section-title">Features</div>
+      <div class="feature-button">AutoOptimize</div>
+      <div class="feature-button">FPS Unlocker (Temporarily disabled)</div>
+      <div class="feature-button">Clean UI with blue/gold glass design</div>
+      <div class="feature-button">Safe flag modifications without root</div>
     </div>
 
-    <a href="https://link-hub.net/1267303/7NrDTrwjZiNJ" class="download-btn">Download (Coming Soon)</a>
+    <div class="dev-status">
+      <div class="section-title">Development Notes</div>
+      <div class="dev-note">✅ AutoOptimize: Fully implemented and stable.</div>
+      <div class="dev-note">⚠️ FPS Unlocker: Roblox updates have prevented uncapping FPS on mobile without executor support. Workarounds are in progress but unstable.</div>
+      <div class="dev-note">🚧 Clean install + cache wipe: Functions normally, but must be tested on different device versions.</div>
+      <div class="dev-note">🧪 Theme & visual polish: New glass style is locked in and finalized. Minor accessibility options may be added.</div>
+      <div class="dev-note">📦 APK size: Currently optimized and under 8MB.</div>
+    </div>
+
+    <a class="download-btn" href="https://link-hub.net/1267303/7NrDTrwjZiNJ" target="_blank">Download (Hosted)</a>
   </div>
-
-  <footer>
-    &copy; 2025 Lunaris Lite. All rights reserved.
-  </footer>
-
 </body>
+
 </html>
