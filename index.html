@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lunaris Dashboard</title>
+  <title>Lunaris Lite</title>
   <style>
     :root {
       --glass-bg: rgba(0, 0, 0, 0.45);
@@ -78,69 +78,89 @@
       transform: scale(1.05);
     }
 
-    .dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
     }
 
-    .dashboard-tile {
+    .feature-btn {
       background: rgba(255, 255, 255, 0.05);
-      padding: 15px;
-      border-radius: 15px;
-      text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .dashboard-tile h3 {
-      margin-bottom: 8px;
+      border-radius: 15px;
+      padding: 15px 25px;
+      font-size: 1rem;
       color: var(--accent-blue);
+      cursor: default;
+      transition: all 0.2s ease-in-out;
     }
 
-    .dashboard-tile p {
+    .feature-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .bugs-list p {
       font-size: 0.9rem;
-      color: #bbb;
+      color: #ff7676;
+      margin: 5px 0;
     }
 
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
+
+      .feature-btn {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Lunaris Launcher</h1>
+  <h1>Lunaris Lite</h1>
 
+  <!-- Update Log Section -->
   <div class="glass-panel update-log">
     <div class="section-title">📝 Latest Update</div>
     <p><strong>v1.4.2</strong> – August 21, 2025</p>
-    <p>- Added Auto-Optimize for Roblox</p>
-    <p>- Improved cache clearing logic</p>
-    <p>- Refined dark glass UI for lower-end devices</p>
-    <p>- Minor bug fixes</p>
-    <a href="https://example.com/lunaris-download.apk" class="download-btn">Download Lunaris Lite</a>
+    <p>- AutoOptimize system stabilized</p>
+    <p>- Minor memory tweaks added</p>
+    <p>- UI polish: smoother glass visuals</p>
+    <a href="https://link-hub.net/1267303/7NrDTrwjZiNJ" class="download-btn" target="_blank">Download Lunaris Lite</a>
   </div>
 
+  <!-- Features Section -->
   <div class="glass-panel">
-    <div class="section-title">📊 Lunaris Dashboard</div>
-    <div class="dashboard">
-      <div class="dashboard-tile">
-        <h3>Cache Cleared</h3>
-        <p>36 times</p>
-      </div>
-      <div class="dashboard-tile">
-        <h3>Optimizations</h3>
-        <p>GPU Boost, RAM Cleaner</p>
-      </div>
-      <div class="dashboard-tile">
-        <h3>Last Used</h3>
-        <p>2 hours ago</p>
-      </div>
-      <div class="dashboard-tile">
-        <h3>Status</h3>
-        <p>✅ Running Smoothly</p>
-      </div>
+    <div class="section-title">⚙️ Features</div>
+    <div class="features">
+      <div class="feature-btn">AutoOptimize</div>
+      <div class="feature-btn">GPU Boost</div>
+      <div class="feature-btn">RAM Cleaner</div>
+      <div class="feature-btn">Force 60FPS</div>
+      <div class="feature-btn">Roblox Cache Wipe</div>
+      <div class="feature-btn">Fast Launch</div>
+    </div>
+  </div>
+
+  <!-- Bugs Section -->
+  <div class="glass-panel">
+    <div class="section-title">🐛 Known Issues</div>
+    <div class="bugs-list">
+      <p>• Cache clear may fail on some Android 11 devices</p>
+      <p>• Dark mode icon flicker (being fixed)</p>
+      <!-- You can add/remove bugs here -->
+    </div>
+  </div>
+
+  <!-- Placeholder Stats (just a mockup) -->
+  <div class="glass-panel">
+    <div class="section-title">📈 Stats</div>
+    <div class="features">
+      <div class="feature-btn">Used by 8,400+</div>
+      <div class="feature-btn">Stable Build</div>
+      <div class="feature-btn">Updated Weekly</div>
     </div>
   </div>
 </body>
